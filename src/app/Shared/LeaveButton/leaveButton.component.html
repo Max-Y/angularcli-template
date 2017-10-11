@@ -1,0 +1,7 @@
+<button type="button" class="btn leave-button {{ isOpen ? 'opaque' : ''}}" (click)="modal.show()"><ng-content></ng-content></button>
+<un-modal  #modal [title]="'Quitter'" (action)="actionModal($event)">
+    <div class="modal-body">Etes-vous sûre de vouloir quitter ?</div>
+    <div class="footer-modal">
+        <button type="button" class="btn btn-primary" (click)="leave()">Quitter</button>
+    </div>
+</un-modal>

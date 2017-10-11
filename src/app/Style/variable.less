@@ -1,0 +1,88 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+ 
+// ------------ color  -----------------//
+@color-primary: #264570;
+@color-primary-hover: #172f50;
+@color-primary-hover-border: #0d1d33;
+
+@color-secondary: @gray-lighter;
+@color-secondary-border: #ccc;
+
+@color-error: #a94442;
+@color-success: #42A948;
+@color-warning: #8a6d3b;
+
+@color-title-h3: #708090;
+
+@color-font: #555555;
+
+@color-breadcrumb: @gray-light;
+@border-breadcrumb: lighten(@gray-light, 5%);
+@color-breadcrumb-active: lighten(@color-error, 10%);
+@border-breadcrumb-active: lighten(@color-error, 5%);
+
+@color-footer: #eeeeee;
+
+@tooltip-bg: @color-error;
+
+@popover-bg: @color-footer;
+
+// ------------ header  -----------------//
+@color-header-primary: @gray-light;
+@color-header-secondary: @color-secondary;
+@width-logo: 100px;
+@width-logo-header: 80px;
+@width-logo-header-phone: 50px;
+@heigth-header: 90px;
+@width-header-aside: 146px;
+@width-arrow: 20px;
+@height-arrow: 30px;
+@arrow: polygon(0 0, 0 100%, 100% 50%);
+
+
+// ------------ z-index  -----------------//
+@zindex-form-control: @zindex-dropdown - 10;
+
+
+
+//--------------  Button -----------------//
+@btn-primary-bg: @color-primary; 
+@btn-primary-border: darken(@btn-primary-bg, 5%);
+
+
+
+// ------------ font-size -----------------//
+@font-size-h1: 22px;
+@font-size-h3: 18px;
+@font-size-h3: 15px;
+
+
+//------------------------- z-index ------------------//
+// @zindex-dropdown:          1000;
+// @zindex-popover:           1060;
+// @zindex-tooltip:           1070;
+// @zindex-modal-background:  1040;
+// @zindex-modal:             1050;
+@zindex-footer:            @zindex-modal-background;
+
+
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+@container-tablet:             (720px + @grid-gutter-width - @width-header-aside);
+//** For `@screen-sm-min` and up.
+@container-sm:                 @container-tablet;
+
+// Medium screen / desktop
+@container-desktop:            (940px + @grid-gutter-width - @width-header-aside);
+//** For `@screen-md-min` and up.
+@container-md:                 @container-desktop;
+
+// Large screen / wide desktop
+@container-large-desktop:      (1140px + @grid-gutter-width - @width-header-aside);
+//** For `@screen-lg-min` and up.
+@container-lg:                 @container-large-desktop;

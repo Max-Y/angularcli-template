@@ -1,0 +1,5 @@
+<div class="btn-group">
+  <select  [(ngModel)]="title" (change)="selectEvent($event, selectComponent.value)" #selectComponent type="button" class="btn btn-primary dropdown-toggle">
+    <option [value]="item.value" *ngFor="let item of items" role="menuitem">{{item.value}}</option>
+  </select>
+</div>

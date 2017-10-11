@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+
+
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';

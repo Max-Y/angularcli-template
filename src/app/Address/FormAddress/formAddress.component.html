@@ -1,0 +1,311 @@
+<div [hidden]="alertHidden" *ngFor="let alert of alerts">
+  <alert  type="{{ type }}" dismissible="true" ><strong>{{ titleAlert }}</strong><p>{{ alert.msg }}</p></alert>
+</div>
+<form>
+    <div class="row">
+        <div class="col-xs-12 title-form-group">
+            <div class="row">
+                <h3 class="col-xs-12">Téléphone et courriel</h3>     
+            </div>
+        </div>
+        <div class="form-group has-feedback rel col-xs-12 {{ !mailAddress.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="mailAddress" class="input-group-addon {{ mailAddress.valid ? '' : 'invalid' }}">Adresse mail personnelle</label>
+                <input  [(ngModel)]="phoneAndMailViewModel.mailAddress" 
+                        name="mailAddress" type="email" 
+                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        class="form-control"
+                        tooltip="{{mailAddress.valid ? '' : 'Email invalide'}}"
+                        id="mailAddress"
+                        #mailAddress="ngModel">
+            </div>
+            <button type="button" class="btn help"
+                    popover="Cette adresse mail nous permettra de vous faire parvenir un nouveau mot de passe pour votre accès à l’Intranet, si besoin">
+                    ?
+            </button>
+        </div>
+
+        <div class="form-group has-feedback col-xs-12 col-md-6 {{ !ceilPhone.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="ceilPhone" class="input-group-addon {{ ceilPhone.valid ? '' : 'invalid' }}">Numéro de portable</label>
+                <input [(ngModel)]="phoneAndMailViewModel.ceilPhone" 
+                        name="ceilPhone" type="tel" 
+                        pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                        class="form-control"
+                        id="ceilPhone"
+                        maxlength="10"
+                        minlength="10"
+                        tooltip="{{ceilPhone.valid ? '' : 'Numéro de télépone invalide'}}"
+                        #ceilPhone="ngModel">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback col-xs-12 col-md-6 {{ !businessPhone.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="businessPhone" class="input-group-addon {{ businessPhone.valid ? '' : 'invalid' }}">Numéro de téléphone professionnel</label>
+                <input [(ngModel)]="phoneAndMailViewModel.businessPhone" 
+                        name="businessPhone" type="tel"
+                        pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                        class="form-control"
+                        id="businessPhone"
+                        maxlength="10"
+                        minlength="10"
+                        tooltip="{{businessPhone.valid ? '' : 'Numéro de télépone invalide'}}"
+                        #businessPhone="ngModel">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 title-form-group">
+            <div class="row">
+                <h3 class="col-xs-12">Adresse fixe hors année universitaire (obligatoire)</h3>         
+            </div>
+        </div>
+
+        <div class="form-group has-feedback col-xs-12 {{ !additionalAddress.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="additionalAddress" class="input-group-addon {{ additionalAddress.valid ? '' : 'invalid' }}">Complément d'adresse</label>
+                <input [(ngModel)]="addressViewModel.additionalAddress" 
+                        name="additionalAddress" type="text"
+                        maxlength="30"
+                        class="form-control"
+                        id="additionalAddress"
+                        #additionalAddress="ngModel">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback col-xs-12 col-md-3 {{ !addressNumberValid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="addressNumber" class="input-group-addon {{ addressNumberValid ? '' : 'invalid' }}">Numéro</label>
+                <input [(ngModel)]="addressViewModel.addressNumber" 
+                        name="addressNumber" type="number" 
+                        class="form-control"
+                        id="addressNumber"
+                        tooltip="{{ addressNumberValid ? '' : 'Le nombre doit être inérieur à 3 chiffres'}}"
+                        (ngModelChange)="checkNumberAddress()"
+                        #addressNumber="ngModel">
+            </div>
+        </div>
+        <div class="form-group has-feedback col-xs-12 col-md-9 {{ !addressName.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="addressName" class="input-group-addon {{ addressName.valid ? '' : 'invalid' }}">Adresse</label>
+                <input [(ngModel)]="addressViewModel.addressName" 
+                        name="addressName" type="text" 
+                        class="form-control"
+                        id="addressName"
+                        #addressName="ngModel"
+                        tooltip="{{ addressName.valid ? '' : 'Champs requis'}}" required>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback col-xs-12 col-md-7 col-lg-6 {{ !locality.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="locality" class="input-group-addon {{ locality.valid ? '' : 'invalid' }}">Localité</label>
+                <input [(ngModel)]="addressViewModel.locality" 
+                        name="locality" type="text" 
+                        class="form-control"
+                        id="locality"
+                        maxlength="26"
+                        #locality="ngModel">
+            </div>
+        </div>
+
+        <div  class="form-group has-feedback col-xs-12 col-md-5 col-lg-3 {{ !zipCode.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="zipCode" class="input-group-addon {{ zipCode.valid ? '' : 'invalid' }}">Code postal</label>
+                <input [(ngModel)]="addressViewModel.zipCode" 
+                        name="zipCode" type="text"
+                        (ngModelChange)="onFocusZipcode()"
+                        class="form-control"
+                        #zipCode="ngModel"
+                        maxlength="{{ maxLengthZipcode }}"
+                        tooltip="{{ zipCode.valid ? '' : 'Champs requis'}}" required>
+            </div>
+        </div>
+
+        <div [hidden]="!isFrenchCountry" class="form-group col-xs-12 col-md-12 col-lg-3 {{ !cities.getChoice() ? 'has-error' : '' }}">
+            <div class="form-dropdown input-group">
+                <label class=" input-group-addon {{ cities.getChoice() ? '' : 'invalid' }}">Ville</label>
+                <un-dropdown tooltip="Champs requis" 
+                            #cities
+                            class="{{ cities.getChoice() ? '' : 'invalid' }}"
+                            tooltip="{{ cities.getChoice() ? '' : 'Champs requis' }}"  
+                            [items]="dropdownCity" required> 
+                </un-dropdown>
+            </div>
+        </div>
+
+        <div [hidden]="isFrenchCountry" class="form-group has-feedback col-xs-12 col-md-12 col-lg-3 {{ !citiesInput.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="citiesInput" class="input-group-addon {{ citiesInput.valid ? '' : 'invalid' }}">Ville</label>
+                <input [(ngModel)]="addressViewModel.city" 
+                        name="citiesInput" type="text" 
+                        class="form-control"
+                        #citiesInput="ngModel"
+                        tooltip="{{ citiesInput.valid ? '' : 'Champs requis'}}" required>
+            </div>
+        </div>
+
+        <div  class="form-group col-xs-12 {{ !countries.getChoice() ? 'has-error' : '' }}">
+            <div class="form-dropdown input-group">
+                <label class=" input-group-addon {{ countries.getChoice() ? '' : 'invalid' }}">Pays</label>
+                <un-dropdown #countries
+                            (select)="chooseCountry()"
+                            class="{{ countries.getChoice() ? '' : 'invalid' }}"
+                            tooltip="{{ countries.getChoice() ? '' : 'Champs requis' }}"  
+                            [items]="dropdownCountry"> 
+                </un-dropdown>
+            </div>
+        </div>
+
+       <div class="form-group has-feedback col-xs-12 col-md-6 {{ !numberPhone.valid ? 'has-error' : '' }}">
+            <div class="input-group col-xs-12">
+                <label for="numberPhone" class="input-group-addon {{ numberPhone.valid ? '' : 'invalid' }}">Numéro de télépone fixe</label>
+                <input [(ngModel)]="addressViewModel.numberPhone"
+                        name="numberPhone" 
+                        type="tel" 
+                        pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                        class="form-control"
+                        id="numberPhone"
+                        maxlength="10"
+                        minlength="10"
+                        tooltip="{{ numberPhone.valid ? '' : 'Numéro de télépone invalide'}}"
+                        #numberPhone="ngModel">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 title-form-group">
+            <div class="row">
+                <h3 class="col-md-9 col-sm-8 col-xs-7">Adresse à l'année si différente (optionnelle)</h3>
+                <button type="button" class="col-md-2 col-sm-3 col-xs-4 btn btn-primary" (click)="toogle()">{{ nameButton }}</button>           
+            </div>
+        </div>
+
+        <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 {{ !additionalAddressOptional.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="additionalAddressOptional" class="input-group-addon {{ additionalAddressOptional.valid ? '' : 'invalid' }}">Complément d'adresse</label>
+                <input [(ngModel)]="addressOptionalViewModel.additionalAddress" 
+                        name="additionalAddressOptional" type="text" 
+                        class="form-control"
+                        maxlength="30"
+                        id="additionalAddressOptional"
+                        #additionalAddressOptional="ngModel">
+            </div>
+        </div>
+
+        <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 col-md-3 {{ !addressNumberOptionalValid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="addressNumberOptional" class="input-group-addon {{ addressNumberOptionalValid ? '' : 'invalid' }}">Numéro</label>
+                <input [(ngModel)]="addressOptionalViewModel.addressNumber" 
+                        name="addressNumberOptional" type="number" 
+                        class="form-control"
+                        tooltip="{{ addressNumberOptionalValid ? '' : 'Le nombre doit être inérieur à 3 chiffres'}}"
+                        (ngModelChange)="checkNumberAddressOptional()"
+                        id="addressNumberOptional"
+                        #addressNumberOptional="ngModel">
+            </div>
+        </div>
+        <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 col-md-9 {{ !addressNameOptional.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="addressNameOptional" class="input-group-addon {{ addressNameOptional.valid ? '' : 'invalid' }}">Adresse</label>
+                <input [(ngModel)]="addressOptionalViewModel.addressName" 
+                        name="addressNameOptional" type="text" 
+                        class="form-control"
+                        id="addressNameOptional"
+                        tooltip="Champs requis"
+                        tooltip="{{ addressNameOptional.valid ? '' : 'Champs requis'}}"
+                        #addressNameOptional="ngModel" required>
+            </div>
+        </div>
+
+        <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 col-md-7 col-lg-6 {{ !localityOptional.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="localityOptional" class="input-group-addon {{ localityOptional.valid ? '' : 'invalid' }}">Localité</label>
+                <input [(ngModel)]="addressOptionalViewModel.locality" 
+                        name="localityOptional" type="text" 
+                        class="form-control"
+                        id="localityOptional"
+                        maxlength="26"
+                        #localityOptional="ngModel">
+            </div>
+        </div>
+
+        <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 col-md-5 col-lg-3 {{ !zipCodeOptional.valid ? 'has-error' : '' }}">
+            <div class="input-group">
+                <label for="zipCodeOptional" class="input-group-addon {{ zipCodeOptional.valid ? '' : 'invalid' }}">Code postal</label>
+                <input [(ngModel)]="addressOptionalViewModel.zipCode" 
+                        name="zipCodeOptional" type="text" 
+                        class="form-control"
+                        (ngModelChange)="onFocusZipcodeOptional()"
+                        id="zipCodeError"
+                        maxlength="{{ maxLengthOptionalZipcode }}"
+                        tooltip="{{ zipCodeOptional.valid ? '' : 'Champs requis'}}"
+                        #zipCodeOptional="ngModel" required>
+            </div>
+        </div>
+
+        <div *ngIf="!isAddressOptionalHidden && isFrenchCountryOptional" class="form-group col-xs-12 col-md-12 col-lg-3 {{ !citiesOptional.getChoice() ? 'has-error' : '' }}" style="margin-bottom: 17px;">
+            <div class="form-dropdown input-group">
+                <label class=" input-group-addon {{ citiesOptional.getChoice() ? '' : 'invalid' }}">Ville</label>
+                <un-dropdown #citiesOptional
+                            class="{{ citiesOptional.getChoice() ? '' : 'invalid' }}"
+                            tooltip="{{ citiesOptional.getChoice() ? '' : 'Champs requis' }}"  
+                            [items]="dropdownCityOptional" required> 
+                </un-dropdown>
+            </div>
+        </div>
+
+
+
+        <div *ngIf="!isAddressOptionalHidden && !isFrenchCountryOptional" class="form-group has-feedback col-xs-12 col-md-12 col-lg-3 {{ !citiesOptionalInput.valid ? 'has-error' : '' }}" style="margin-bottom: 17px;">
+            <div class="input-group">
+                <label for="citiesOptionalInput" class="input-group-addon {{ citiesOptionalInput.valid ? '' : 'invalid' }}">Ville</label>
+                <input [(ngModel)]="addressOptionalViewModel.city" 
+                        name="citiesOptionalInput" type="text" 
+                        class="form-control"
+                        #citiesOptionalInput="ngModel"
+                        tooltip="{{ citiesOptionalInput.valid ? '' : 'Champs requis'}}" required>
+            </div>
+        </div>
+
+
+        <div  [hidden]="isAddressOptionalHidden" class="form-group col-xs-12 col-md-3 {{ !countriesOptional.getChoice() ? 'has-error' : '' }}" >
+            <div class="form-dropdown input-group">
+                <label class=" input-group-addon {{ countriesOptional.getChoice() ? '' : 'invalid' }}">Pays</label>
+                <un-dropdown #countriesOptional
+                            (select)="chooseCountryOptional()"
+                            class="{{ countriesOptional.getChoice() ? '' : 'invalid' }}"
+                            tooltip="{{ countriesOptional.getChoice() ? '' : 'Champs requis' }}"  
+                            [items]="dropdownCountry" required> 
+                </un-dropdown>
+            </div>
+        </div>
+
+       <div [hidden]="isAddressOptionalHidden" class="form-group has-feedback col-xs-12 {{ !numberPhoneOptional.valid ? 'has-error' : '' }}">
+            <div class="input-group col-xs-12 col-md-6">
+                <label for="numberPhoneOptional" class="input-group-addon {{ numberPhoneOptional.valid ? '' : 'invalid' }}">Numéro de télépone fixe</label>
+                <input [(ngModel)]="addressOptionalViewModel.numberPhone"
+                        name="numberPhoneOptional" type="text" 
+                        class="form-control"
+                        id="numberPhoneOptional"
+                        type="tel"
+                        maxlength="10"
+                        minlength="10"
+                        pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                        tooltip="{{ numberPhoneOptional.valid ? '' : 'Numéro de télépone invalide'}}"
+                        #numberPhoneOptional="ngModel">
+            </div>
+        </div>
+
+        <alert [hidden]="isAddressOptionalHidden" class="col-xs-12 col-md-7" type="warning">
+            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            Réception du courrier administratif (relevé de notes, ...) : 
+            <un-dropdown #receivingMail class="" [title]="'Adresse fixe'" [items]="dropdownAddress"> 
+            </un-dropdown>
+        </alert>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+ 
+.btn.btn-primary {
+    outline: none !important;
+    border-radius: 4px;
+ }
+
+.btn.btn-primary:focus {
+    background-color: darken(@color-primary, 10%);
+    border-color: darken(@color-primary, 15%);
+}
+
+.btn.btn-primary:hover {
+    background-color: darken(@color-primary, 10%);
+    border-color: darken(@color-primary, 15%);
+}
+
+.btn.btn-cancel {
+    outline: none !important;
+    border-radius: 4px;
+    background-color: @color-error;
+    border-color: darken(@color-error, 5%);
+    color: @body-bg;
+ }
+
+.btn.btn-cancel:hover {
+    background-color: darken(@color-error, 10%);
+    border-color: darken(@color-error, 15%);
+    color: @body-bg;
+}
+
+.btn.btn-cancel:focus {
+    background-color: darken(@color-error, 10%);
+    border-color: darken(@color-error, 15%);
+    color: @body-bg;
+}

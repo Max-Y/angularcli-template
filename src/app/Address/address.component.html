@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-xs-2 col-sm-3 col-md-2 hidden-xs">
+        <img  src="/assets/adresse.gif" alt="logo adresse">
+    </div>
+    <div class="col-xs-10 col-sm-9 col-md-10">
+        <h2>Actualisation de vos adresses</h2>
+        <p>{{ _fullname }}</p>
+    </div>
+    <div class="warning col-xs-12">
+        <alert type="warning">
+            Ces adresses permettent de vous envoyer du courrier tel que votre carte d'étudiant.<br />
+            Les adresses courriel ainsi que les numéros de téléphone peuvent être utilisés en cas de perte de votre mot de passe.<br />
+            Merci de tenir à jour ces coordonnées.<br />
+        </alert>
+    </div>
+</div>
+<div *ngIf="even$ | async">
+    <un-form-address #formAdress (error)="error"></un-form-address>
+</div>
+<un-footer *ngIf="even$ | async">
+    <button type="button" class="btn btn-primary col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5" (click)="submit()">Enregistrer</button>  
+</un-footer>

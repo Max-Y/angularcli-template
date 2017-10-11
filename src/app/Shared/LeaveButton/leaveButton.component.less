@@ -1,0 +1,65 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+ 
+.leave-button {
+    background-color: inherit;
+    color: inherit;
+}
+
+.btn.leave-button:hover {
+    background-color: inherit;
+    color: inherit;
+}
+
+.btn.leave-button:focus {
+    background-color: inherit;
+    color: inherit;
+}
+
+.disconnect {
+    position: fixed;
+    top: 8px;
+    right: 11px;
+    height: 56px;
+    width: 43px;
+    color: @body-bg;
+    border: 1px solid #b1afaf;
+    outline: none !important;
+    border-radius: 4px;
+    z-index: @zindex-modal;
+
+    button {
+        font-size: 21px;
+        padding: 5px 5px;
+
+        .glyphicon-class {
+            display: block;
+            font-size: 10px;
+        }
+    }
+}
+
+.disconnect:hover {
+    color: @body-bg;
+    background-color: darken(@color-primary, 10%);
+    border-color: darken(@color-primary, 15%);
+    text-decoration: none;
+
+    button:hover {
+        font-size: 21px;
+    }
+}
+
+.disconnect:focus {
+    color: @body-bg;
+    background-color: darken(@color-primary, 10%);
+    border-color: darken(@color-primary, 15%);
+    text-decoration: none;
+
+    button:focus {
+        font-size: 21px;
+    }
+}

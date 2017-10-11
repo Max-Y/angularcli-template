@@ -1,0 +1,199 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+ 
+html {
+    height: 100%;
+
+    body {
+        height: 100%;
+    }
+}
+
+header {
+    height: @heigth-header;
+    width: 100%;
+
+    .header__img {
+        height: 100%;
+        width: @width-header-aside;
+        display: inline-block;
+        background-color: @color-header-secondary;
+        position: relative;
+
+        img {
+            max-width: @width-logo-header;
+            margin-top: 5px;
+            margin-left: 30px;
+        }
+
+        hr {
+            border: 2px solid @body-bg;    
+            margin-top: -5px;
+        }
+    }
+
+    .header__img .arrow {
+        position: absolute;
+        top: 13px;
+        left: 96%;
+        width: @width-arrow;
+        height: @height-arrow;
+        z-index: 10;
+        
+        polygon {
+            stroke-width: 0;
+            stroke: @color-header-secondary;
+            fill: @color-header-secondary;
+        }
+    }
+
+    .header__title {
+        height: calc(100% - 20px);
+        display: inline-block;
+        background-color: @color-header-primary;
+        position: relative;
+
+        h1 {
+            color: @body-bg;
+            margin-left: 25px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+
+    .header__title .arrow {
+        position: absolute;
+        top: 16px;
+        left: 0px;
+        background-color: @color-header-primary;
+        width: @width-arrow;
+        height: @height-arrow;
+        
+        polygon {
+            stroke-width: 0;
+            stroke: @body-bg;
+            fill: @body-bg;
+        }
+    }
+
+    .header__phone {
+        width: 100%;
+        height: calc(100% - 20px);
+        display: inline-block;
+        background-color: @color-header-primary;
+        position: relative;
+
+        img {
+            max-width: @width-logo-header-phone;
+            margin-left: 10px;
+            position: fixed;
+            top: 5px;
+            left: 0;
+        }
+
+        h1 {
+            margin: 0;
+            color: @body-bg;
+            font-size: 14px;
+            font-weight: bold;
+            position: fixed;
+            top: 10px;
+            left: 64px;
+        }
+    }
+}
+
+main {
+    position: relative;
+
+    aside {
+        width: @width-header-aside;
+        display: inline-block;
+        top: 15px;
+        position: absolute;
+
+        img {
+            max-width: @width-logo;
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+    }
+
+    .contain-scroll {
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100%;
+        padding-bottom: 30px;
+    }
+
+    .main {
+        display: inline-block;
+        position: absolute;
+        left: 150px;
+        height: 100%;
+
+        .container {
+            position: relative;
+
+            .footer {
+                margin-left: 150px;
+                height: 50px;
+                width: 100%;
+                position: fixed;
+                bottom: 0px;
+                left: 0;
+                z-index: @zindex-footer + 1;
+                padding: 10px 0;
+                
+                un-leave-button.btn.btn-cancel {
+                    padding: 0;
+                    .modal-content {
+                        color: @color-primary;
+                    }
+                }
+
+                un-leave-button.btn.btn-cancel:focus {
+                    color: @body-bg;
+                }
+
+                un-leave-button.btn.btn-cancel:hover {
+                    color: @body-bg;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    z-index: @zindex-footer;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    background: @color-footer;
+}
+
+@media  (max-width: @screen-sm-max) {
+    main {
+        .main {
+            width: 100% !important;
+            position: static;
+        }
+
+        .footer  {
+            margin-left: 0 !important;
+
+            .footer-row {
+                width: 100% !important;
+            }
+        }
+    }
+}

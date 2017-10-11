@@ -1,3 +1,59 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+  <div class="header__img hidden-xs">
+    <img src="{{ _srcImgTitle }}" alt="{{ _altImgTitle }}">
+    <hr>
+    <div class='arrow'>
+      <svg xmlns="http://www.w3.org/2000/svg" viewbox='0, 0, 20, 40'>
+        <polygon points="0,0 25,17 0,40 0, 15" />
+      </svg>
+    </div>
+  </div>
+  <div class="header__title hidden-xs" style="width: calc(100% - 153px)">
+    <h1>{{ _title }}</h1>
+    <un-leave-button class= "pull-right  disconnect">
+      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+      <span class="glyphicon-class">Quitter</span>
+    </un-leave-button>
+    <div class='arrow'>
+      <svg xmlns="http://www.w3.org/2000/svg" viewbox='0, 0, 20, 35'>
+        <polygon points="0,0 20,15 0,35 0, 15" />
+      </svg>
+    </div>
+  </div>
+  <div class="header__phone visible-xs">
+    <img src="{{ _srcImgTitle }}" alt="{{ _altImgTitle }}">
+    <h1 style="width: calc(100% - 126px)">{{ _title }}</h1>
+    <un-leave-button class= "pull-right  disconnect">
+      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+      <span class="glyphicon-class">Quitter</span>
+    </un-leave-button>
+  </div>
+
+</header>
+
+<main style="height: calc(100% - 90px);">
+  <aside class="visible-md-block visible-lg-block">
+    <img src="/assets/logo.png" alt="Angularcli-template">
+  </aside>
+
+  <div class="main" style="width: calc(100% - 150px); height: calc(100% - 50px)">
+    <div class="contain-scroll">
+      <div class="container">
+        <div [hidden]="authorized" class="row content">
+          <p>
+            {{ _text }}
+          </p>
+          <p>
+            {{ _secondText }}
+          </p>
+        </div>
+        <div [hidden]="!authorized">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+</footer>

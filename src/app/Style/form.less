@@ -1,0 +1,75 @@
+/**
+ * @license
+ * Copyright Angularcli-template All Rights Reserved.
+ * 
+ */
+ 
+form {
+    [hidden], template {
+        display: none !important;
+    }
+
+    div {
+        .title-form-group {
+            padding: 0px 15px;
+            margin-bottom: 20px;
+
+            div {
+                background: #708090;
+                margin: 0;
+            }
+
+            button {
+                margin: 5px 0px;
+                margin-left: 30px;
+            }
+        }
+
+        .form-control-feedback {
+            right: 14px;
+            z-index: @zindex-form-control;
+        }
+
+        h3 {
+            text-align: center;
+            display: block;
+            background: @color-title-h3;
+            color: @body-bg;
+            font-weight: bold;
+            margin-top: 14px;
+        }
+
+        div {
+            margin-bottom: 5px;
+        }
+    }
+
+    .input-group {
+        .input-group-addon.valid  {
+            border-left: 5px solid @color-success;
+        }
+        .input-group-addon.invalid  {
+            border-left: 5px solid @color-error;
+        }
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+@media (min-width: 992px) {
+    form {
+        div {
+            .title-form-group {
+                h3 {
+                    padding-left: 150px;
+                }
+            }
+        }
+    }
+}

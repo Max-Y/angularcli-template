@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "test-project-angular-cli"
+    "name": "angularcli-template"
   },
   "apps": [
     {
@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "bootstrap.less"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
